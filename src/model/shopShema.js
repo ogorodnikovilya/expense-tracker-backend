@@ -3,11 +3,11 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const shopScheme = new Schema({
-  text: {
+  titleExpense: {
     type: String,
     required: true
   },
-  date: Date,
+  date: String,
   cost: {
     type: Number,
     required: true
