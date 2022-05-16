@@ -10,11 +10,7 @@ module.exports.createNewExpense = (req, res) => {
   const body = req.body;
 
   if (body.hasOwnProperty('titleExpense')) {
-    const shop = new Shop({
-      titleExpense: body.titleExpense,
-      date: body.date,
-      cost: body.cost
-    });
+    const shop = new Shop(body);
     shop.save().then(result => {
       res.send(result);
     }).catch(err => res.send(err));

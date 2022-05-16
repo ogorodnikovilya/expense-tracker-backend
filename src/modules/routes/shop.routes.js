@@ -4,7 +4,7 @@ const router = express.Router();
 const {
   getAllExpense,
   createNewExpense,
-} = require('../controllers/task.controller');
+} = require('../controllers/shop.controller');
 
 
 router.get('/allExpense', getAllExpense);
