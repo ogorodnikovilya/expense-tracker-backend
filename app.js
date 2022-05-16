@@ -5,6 +5,8 @@ const cors = require('cors');
 
 const app = express();
 
+const apiRoutes = require('./src/modules/routes/shop.routes')
+
 app.use(cors({
   'Access-Control-Allow-Origin': '*'
 }));
@@ -15,6 +17,7 @@ mongoose.connect(process.env.URL, {
 });
 
 app.use(express.json());
+app.use('/', apiRoutes)
 
 app.listen(8080, () => {
   console.log('App listening on port 8080');
