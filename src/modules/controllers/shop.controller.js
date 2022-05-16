@@ -16,3 +16,14 @@ module.exports.createNewExpense = (req, res) => {
     }).catch(err => res.send(err));
   };
 };
+
+module.exports.deleteExpense = (req, res) => {
+  const id = req.query.id;
+  Shop.deleteOne({_id: id}).then(() => { 
+    Shop.find().then(result => {          
+      res.send(result);                 
+    }).catch(err => {
+      res.send(err);
+    });   
+  });
+};
