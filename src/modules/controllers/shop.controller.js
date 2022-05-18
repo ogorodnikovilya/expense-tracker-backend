@@ -13,7 +13,10 @@ const getAllExpense = (req, res) => {
 const createNewExpense = (req, res) => {
   try {
     const { titleExpense, cost } = req.body;
-    if (titleExpense === '' || typeof titleExpense !== 'string' || cost === '' || typeof cost !== 'string') {
+    if (titleExpense === '' 
+      || typeof titleExpense !== 'string'
+      || cost === ''
+      || typeof cost !== 'string') {
       throw new Error();
     };
       const shop = new Shop(req.body);
@@ -28,7 +31,13 @@ const createNewExpense = (req, res) => {
 const changeExpenseInfo = (req, res) => {
   try {
     const { _id, titleExpense, date, cost } = req.body;
-    if (!_id || titleExpense === '' || typeof titleExpense !== 'string' || date === "" || typeof date !== 'string' || cost === '' || typeof cost !== 'string') {
+    if (!_id 
+      || titleExpense === '' 
+      || typeof titleExpense !== 'string' 
+      || date === "" 
+      || typeof date !== 'string' 
+      || cost === '' 
+      || typeof cost !== 'string') {
       throw new Error();
     };
     
