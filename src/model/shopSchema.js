@@ -3,15 +3,9 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const shopScheme = new Schema({
-  titleExpense: {
-    type: String,
-    required: true
-  },
+  titleExpense: String,
   date: String,
-  cost: {
-    type: Number,
-    required: true
-  }
+  cost: Number,
 });
 
-module.exports = Shop = mongoose.model('shops', shopScheme)
+module.exports = Shop = mongoose.model('Shops', shopScheme)
