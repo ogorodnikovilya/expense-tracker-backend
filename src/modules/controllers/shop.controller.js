@@ -17,18 +17,19 @@ const createNewExpense = (req, res) => {
     if (titleExpense === '' 
       || typeof titleExpense !== 'string'
       || cost === ''
-      || typeof cost !== 'string') {
+      || typeof cost !== 'string'
+      ){
       throw new Error();
     };
     const shop = new Shop({
       titleExpense,
       cost, 
     });
-      shop.save().then(result => {
-        res.status(200).send(result);
-      });
+    shop.save().then(result => {
+      res.status(200).send(result);
+    });
   } catch (error) {
-    res.status(404).send(error.message);
+    res.status(404).send({message: 'Fail in create Expense'});
   };
 };
 
@@ -41,7 +42,8 @@ const changeExpenseInfo = (req, res) => {
       || date === "" 
       || typeof date !== 'string' 
       || cost === '' 
-      || typeof cost !== 'string') {
+      || typeof cost !== 'string'
+      ){
       throw new Error();
     };
 
