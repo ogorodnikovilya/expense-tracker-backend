@@ -4,28 +4,32 @@ const getAllExpense = (req, res) => {
   try {
     Shop.find().then(result => {
       res.status(200).send({data: result});
-    })
+    });
   } catch (error) {
     res.status(404).send({message: 'Fail in get all Expenses'});
-  }
+  };
 };
 
 const createNewExpense = (req, res) => {
   try {
-    const { titleExpense, cost } = req.body;
+    const { titleExpense, cost, date } = req.body;
     if (titleExpense === '' 
       || typeof titleExpense !== 'string'
       || cost === ''
       || typeof cost !== 'string') {
       throw new Error();
     };
-      const shop = new Shop(req.body);
+      const shop = new Shop({
+        titleExpense,
+        cost, 
+        date 
+      });
       shop.save().then(result => {
         res.status(200).send(result);
-      })
+      });
   } catch (error) {
     res.status(404).send(error.message);
-  }
+  };
 };
 
 const changeExpenseInfo = (req, res) => {
@@ -43,18 +47,18 @@ const changeExpenseInfo = (req, res) => {
     
     Shop.findOneAndUpdate(
       { _id: _id },
-      { $set: req.body },
+      { $set: {
+        titleExpense,
+        date,
+        cost
+      } },
       { new: true }
-    ).then(() => { 
-      Shop.find().then(result => {          
-        res.status(200).send(result);                 
-      }).catch(() => {
-        res.status(404).send({message: 'Fail in change Expense'});
-      });   
+    ).then(result => { 
+      res.status(200).send(result);   
     });
   } catch (error) {
     res.status(404).send({message: 'Fail in change Expense'});
-  }
+  };
 };
 
 const deleteExpense = (req, res) => {
@@ -65,7 +69,7 @@ const deleteExpense = (req, res) => {
     });
   } catch (error) {
     res.status(404).send({message: 'Fail in delete Expense'});
-  }
+  };
 };
 
 module.exports = {
