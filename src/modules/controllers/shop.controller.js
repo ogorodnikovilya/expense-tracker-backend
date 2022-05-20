@@ -1,3 +1,4 @@
+const shopSchema = require('../../model/shopSchema');
 const Shop = require('../../model/shopSchema');
 
 const getAllExpense = (req, res) => {
@@ -12,18 +13,17 @@ const getAllExpense = (req, res) => {
 
 const createNewExpense = (req, res) => {
   try {
-    const { titleExpense, cost, date } = req.body;
+    const { titleExpense, cost} = req.body;
     if (titleExpense === '' 
       || typeof titleExpense !== 'string'
       || cost === ''
       || typeof cost !== 'string') {
       throw new Error();
     };
-      const shop = new Shop({
-        titleExpense,
-        cost, 
-        date 
-      });
+    const shop = new Shop({
+      titleExpense,
+      cost, 
+    });
       shop.save().then(result => {
         res.status(200).send(result);
       });
@@ -44,7 +44,7 @@ const changeExpenseInfo = (req, res) => {
       || typeof cost !== 'string') {
       throw new Error();
     };
-    
+
     Shop.findOneAndUpdate(
       { _id: _id },
       { $set: {
@@ -54,7 +54,7 @@ const changeExpenseInfo = (req, res) => {
       } },
       { new: true }
     ).then(result => { 
-      res.status(200).send(result);   
+      res.status(200).send(result);
     });
   } catch (error) {
     res.status(404).send({message: 'Fail in change Expense'});

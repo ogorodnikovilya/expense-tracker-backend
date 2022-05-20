@@ -7,10 +7,13 @@ const shopScheme = new Schema({
     type: String,
     required: true
   },
-  date: String,
   cost: {
     type: Number,
     required: true
+  },
+  date: {
+    type: Date,
+    default: Date.now
   }
 });
 
