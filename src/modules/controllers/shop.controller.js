@@ -28,7 +28,7 @@ const createNewExpense = (req, res) => {
       res.status(200).send(result);
     });
   } catch (error) {
-    res.status(404).send({message: 'Fail in create Expense'});
+    res.status(406).send({message: 'Fail in create Expense'});
   };
 };
 
@@ -58,7 +58,7 @@ const changeExpenseInfo = (req, res) => {
       res.status(200).send(result);
     });
   } catch (error) {
-    res.status(404).send({message: 'Fail in change Expense'});
+    res.status(409).send({message: 'Fail in change Expense'});
   };
 };
 
