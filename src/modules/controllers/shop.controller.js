@@ -1,4 +1,3 @@
-const shopSchema = require('../../model/shopSchema');
 const Shop = require('../../model/shopSchema');
 
 const getAllExpense = (req, res) => {
@@ -18,7 +17,7 @@ const createNewExpense = (req, res) => {
       || typeof titleExpense !== 'string'
       || cost === ''
       || typeof cost !== 'string'
-      ){
+    ){
       throw new Error();
     };
     const shop = new Shop({
@@ -38,12 +37,12 @@ const changeExpenseInfo = (req, res) => {
     const { _id, titleExpense, date, cost } = req.body;
     if (!_id 
       || titleExpense === '' 
-      || typeof titleExpense !== 'string' 
+      || typeof titleExpense !== 'string'
       || date === "" 
-      || typeof date !== 'string' 
+      || typeof date !== 'string'
       || cost === '' 
       || typeof cost !== 'string'
-      ){
+    ){
       throw new Error();
     };
 
@@ -66,8 +65,8 @@ const changeExpenseInfo = (req, res) => {
 const deleteExpense = (req, res) => {
   try {
     const id = req.query.id;
-    Shop.deleteOne({ _id: id }).then((result) => {          
-      res.status(200).send(result);                 
+    Shop.deleteOne({ _id: id }).then(result => {
+      res.status(200).send(result);
     });
   } catch (error) {
     res.status(404).send({message: 'Fail in delete Expense'});

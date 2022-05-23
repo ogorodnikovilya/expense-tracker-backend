@@ -13,7 +13,7 @@ app.use(cors({
 app.use(express.json());
 app.use("/", apiRoutes);
 
-const init = async() => {
+const init = () => {
   try {
     mongoose.connect(process.env.URL, {
       useUnifiedTopology: true, 
@@ -25,6 +25,7 @@ const init = async() => {
     });
   } catch (error) {
     console.error(error);
+    process.exit(1);
   };
 };
 
