@@ -32,17 +32,21 @@ const createNewExpense = (req, res) => {
   };
 };
 
+const isValidString = (titleExpense, date, cost) => {
+  let validStr = true;
+    return (titleExpense === "" 
+    || typeof titleExpense !== 'string'
+    || date === "" 
+    || typeof date !== 'string'
+    || cost === '' 
+    || typeof cost !== 'string') ? !validStr : validStr;
+};
+
 const changeExpenseInfo = (req, res) => {
   try {
     const { _id, titleExpense, date, cost } = req.body;
-    if (!_id 
-      || titleExpense === '' 
-      || typeof titleExpense !== 'string'
-      || date === "" 
-      || typeof date !== 'string'
-      || cost === '' 
-      || typeof cost !== 'string'
-    ){
+
+    if(!_id || (isValidString(titleExpense, date, cost))) {
       throw new Error();
     };
 
