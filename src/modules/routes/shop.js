@@ -6,7 +6,7 @@ const {
   createNewExpense,
   changeExpenseInfo,
   deleteExpense,
-} = require('../controllers/shop.controller');
+} = require('../controllers/shop');
 
 
 router.get('/allExpense', getAllExpense);

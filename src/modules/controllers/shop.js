@@ -1,4 +1,5 @@
 const Shop = require('../../model/shopSchema');
+const {isValidString, isValidNumber} = require('../../helpers/validations')
 
 const getAllExpense = (req, res) => {
   try {
@@ -13,11 +14,7 @@ const getAllExpense = (req, res) => {
 const createNewExpense = (req, res) => {
   try {
     const { titleExpense, cost} = req.body;
-    if (titleExpense === '' 
-      || typeof titleExpense !== 'string'
-      || cost === ''
-      || typeof cost !== 'string'
-    ){
+    if (isValidString(titleExpense) || isValidNumber(cost)) {
       throw new Error();
     };
     const shop = new Shop({
@@ -32,21 +29,15 @@ const createNewExpense = (req, res) => {
   };
 };
 
-const isValidString = (titleExpense, date, cost) => {
-  let validStr = true;
-    return (titleExpense === "" 
-    || typeof titleExpense !== 'string'
-    || date === "" 
-    || typeof date !== 'string'
-    || cost === '' 
-    || typeof cost !== 'string') ? !validStr : validStr;
-};
-
 const changeExpenseInfo = (req, res) => {
   try {
     const { _id, titleExpense, date, cost } = req.body;
 
-    if(!_id || (isValidString(titleExpense, date, cost))) {
+    if(!_id 
+      || isValidString(titleExpense)
+      || isValidString(date)
+      || isValidNumber(cost)
+    ){
       throw new Error();
     };
 

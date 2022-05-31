@@ -5,7 +5,7 @@ const cors = require('cors');
 
 const app = express();
 
-const apiRoutes = require('./src/modules/routes/shop.routes')
+const apiRoutes = require('./src/modules/routes/shop')
 
 app.use(cors({
   'Access-Control-Allow-Origin': '*'
