@@ -1,6 +1,6 @@
-const isValidString = (str) => str === '' || typeof str !== 'string';
+const isValidString = (str) => typeof str !== 'string' || str === '';
 
-const isValidNumber = (num) => num === '' || typeof num !== 'number';
+const isValidNumber = (num) => typeof num !== 'number';
 
 module.exports = {
   isValidString,
