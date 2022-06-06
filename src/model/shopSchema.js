@@ -7,11 +7,14 @@ const shopScheme = new Schema({
     type: String,
     required: true
   },
-  date: String,
   cost: {
     type: Number,
     required: true
+  },
+  date: {
+    type: Date,
+    default: Date.now
   }
 });
 
-module.exports = Shop = mongoose.model('shops', shopScheme)
+module.exports = Shop = mongoose.model('Shops', shopScheme)

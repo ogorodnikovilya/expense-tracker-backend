@@ -5,20 +5,28 @@ const cors = require('cors');
 
 const app = express();
 
-const apiRoutes = require('./src/modules/routes/shop.routes')
+const apiRoutes = require('./src/modules/routes/shop')
 
 app.use(cors({
   'Access-Control-Allow-Origin': '*'
 }));
-
-mongoose.connect(process.env.URL, {
-  useUnifiedTopology: true, 
-  useNewUrlParser: true
-});
-
 app.use(express.json());
-app.use('/', apiRoutes)
+app.use("/", apiRoutes);
 
-app.listen(8080, () => {
-  console.log('App listening on port 8080');
-});
+const init = () => {
+  try {
+    mongoose.connect(process.env.URL, {
+      useUnifiedTopology: true, 
+      useNewUrlParser: true
+    });
+    
+    app.listen(8080, () => {
+      console.log('App listening on port 8080');
+    });
+  } catch (error) {
+    console.error(error);
+    process.exit(1);
+  };
+};
+
+init();
